@@ -23,6 +23,10 @@ migrate_working_dir/
 # is commented out by default.
 #.vscode/
 
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
@@ -43,3 +47,13 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+.cxx/
+*.keystore
+*.jks
+*.properties
+!/android/key.properties
+
+# Tambahan untuk Android Studio yang lebih spesifik
+
+
+# Tambahan untuk VS Code agar settingan personal tidak naik ke cloud
