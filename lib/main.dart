@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'models/debt.dart';
 import 'providers/debt_provider.dart';
 import 'screens/home_screen.dart';
+import 'services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,8 +12,14 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(DebtAdapter());
   
+  // Create provider instance but don't block everything with its init
   final debtProvider = DebtProvider();
-  await debtProvider.init();
+  
+  // Run notification and provider initialization in parallel
+  await Future.wait([
+    NotificationService().initialize(),
+    debtProvider.init(),
+  ]);
 
   runApp(
     MultiProvider(
