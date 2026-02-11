@@ -12,7 +12,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-        isCoreLibraryDesugaringEnabled = true
+        coreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId = "com.rozy.catatutang"
-        minSdk = flutter.minSdkVersion
+        minSdk = 21
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
