@@ -24,24 +24,81 @@ class NotificationService {
       // 1. Initialize Timezones
       tz.initializeTimeZones();
       
-      // 2. Deteksi Zona Waktu Lokal (Manual/Safe Way)
-      // Mengambil offset dari waktu sistem sekarang
+      // 2. Deteksi Zona Waktu Lokal
       final now = DateTime.now();
-      final offset = now.timeZoneOffset;
-      
-      // Cari lokasi yang punya offset sama
+      final tzAbbr = now.timeZoneName;       // e.g. "WIB", "WITA", "WIT", "EST"
+      final offsetSeconds = now.timeZoneOffset.inSeconds; // Dalam detik, sama dengan loc.currentTimeZone.offset
+
+      // Mapping nama singkatan timezone OS ke nama IANA timezone
+      // Prioritas zona waktu Indonesia + zona umum lainnya
+      const tzAbbreviationMap = <String, String>{
+        // Indonesia
+        'WIB':  'Asia/Jakarta',
+        'WITA': 'Asia/Makassar',
+        'WIT':  'Asia/Jayapura',
+        // Asia Tenggara lainnya
+        'WIB ':  'Asia/Jakarta',
+        'ICT':  'Asia/Bangkok',
+        'SGT':  'Asia/Singapore',
+        'MYT':  'Asia/Kuala_Lumpur',
+        'PHT':  'Asia/Manila',
+        'JST':  'Asia/Tokyo',
+        'KST':  'Asia/Seoul',
+        'CST':  'Asia/Shanghai',
+        'IST':  'Asia/Kolkata',
+        'PKT':  'Asia/Karachi',
+        // Eropa
+        'GMT':  'Europe/London',
+        'UTC':  'UTC',
+        'CET':  'Europe/Paris',
+        'EET':  'Europe/Helsinki',
+        // Amerika
+        'EST':  'America/New_York',
+        'EDT':  'America/New_York',
+        'CST ':  'America/Chicago',
+        'CDT':  'America/Chicago',
+        'MST':  'America/Denver',
+        'MDT':  'America/Denver',
+        'PST':  'America/Los_Angeles',
+        'PDT':  'America/Los_Angeles',
+        // Australia
+        'AEST': 'Australia/Sydney',
+        'AEDT': 'Australia/Sydney',
+        'ACST': 'Australia/Darwin',
+        'AWST': 'Australia/Perth',
+      };
+
+      // Cari lokasi yang punya offset sama (dalam detik — satuan yang benar)
       String selectedTimeZone = 'Asia/Jakarta'; // Default fallback
-      
+
       try {
-        final locations = tz.timeZoneDatabase.locations.values;
-        for (var loc in locations) {
-          if (loc.currentTimeZone.offset == offset.inMilliseconds) {
-            selectedTimeZone = loc.name;
-            break;
+        // Langkah 1: Coba map langsung dari nama singkatan timezone OS
+        if (tzAbbreviationMap.containsKey(tzAbbr)) {
+          selectedTimeZone = tzAbbreviationMap[tzAbbr]!;
+          debugPrint("Timezone resolved via abbreviation map: $tzAbbr → $selectedTimeZone");
+        } else {
+          // Langkah 2: Fallback — cari berdasarkan offset (dalam detik, satuan yang benar)
+          final locations = tz.timeZoneDatabase.locations.values;
+          String? matchedByOffset;
+          for (var loc in locations) {
+            // loc.currentTimeZone.offset adalah dalam DETIK (bukan milidetik)
+            if (loc.currentTimeZone.offset == offsetSeconds) {
+              matchedByOffset ??= loc.name; // Simpan match pertama
+              // Prioritaskan zona yang namanya mengandung nama negara/kota yang lebih dikenal
+              if (loc.name.startsWith('Asia/') || loc.name.startsWith('America/') || loc.name.startsWith('Europe/')) {
+                selectedTimeZone = loc.name;
+                break;
+              }
+            }
           }
+          // Gunakan hasil fallback jika ada
+          if (matchedByOffset != null && selectedTimeZone == 'Asia/Jakarta') {
+            selectedTimeZone = matchedByOffset;
+          }
+          debugPrint("Timezone resolved via offset fallback ($offsetSeconds s): $selectedTimeZone");
         }
       } catch (e) {
-        debugPrint("Match timezone error: $e");
+        debugPrint("Match timezone error: $e — using default: $selectedTimeZone");
       }
       
       tz.setLocalLocation(tz.getLocation(selectedTimeZone));
