@@ -108,6 +108,16 @@ BottomNavigationBar
 
 `IndexedStack` dipakai agar **semua tab tetap hidup** di memori, jadi tidak reload saat pindah tab.
 
+> **Tampilan Layar:**
+
+| Beranda | Riwayat (Belum Lunas) | Riwayat (Sudah Lunas) |
+|:---:|:---:|:---:|
+| ![Beranda](assets/screenshots/01_beranda.jpeg) | ![Riwayat Belum Lunas](assets/screenshots/02_riwayat_belum_lunas.jpeg) | ![Riwayat Lunas](assets/screenshots/03_riwayat_lunas.jpeg) |
+
+| Jadwal Bayar | Form Tambah Hutang | Detail Hutang |
+|:---:|:---:|:---:|
+| ![Jadwal](assets/screenshots/04_jadwal.jpeg) | ![Form Tambah](assets/screenshots/05_form_tambah.jpeg) | ![Detail](assets/screenshots/06_detail_hutang.jpeg) |
+
 ---
 
 ## 🔄 Alur Fitur Utama
@@ -181,6 +191,7 @@ Pengguna tap kartu hutang, ATAU tekan ikon ℹ️
 ## 📋 Tiap Tab: Apa yang Ditampilkan
 
 ### 🏠 Beranda (`DashboardSection`)
+![Beranda](assets/screenshots/01_beranda.jpeg)
 - Judul besar "CATATAN HUTANG SAYA"
 - Total yang harus dibayar
 - Dua summary card: **Belum Dibayar** (merah) dan **Sudah Dibayar** (hijau)
@@ -188,11 +199,13 @@ Pengguna tap kartu hutang, ATAU tekan ikon ℹ️
 - Tombol "Lihat Semua" → pindah ke tab Riwayat
 
 ### 💼 Riwayat (`HistorySection`)
+![Riwayat Belum Lunas](assets/screenshots/02_riwayat_belum_lunas.jpeg) ![Riwayat Lunas](assets/screenshots/03_riwayat_lunas.jpeg)
 - Dua tab: **"Belum Lunas"** dan **"Sudah Lunas"**
 - Semua hutang diurutkan dari yang terbaru
 - Setiap item bisa dilihat detailnya, diedit, atau dihapus
 
 ### 📅 Jadwal (`ScheduleSection`)
+![Jadwal](assets/screenshots/04_jadwal.jpeg)
 - Hanya menampilkan hutang yang **belum lunas dan punya tanggal jatuh tempo**
 - Diurutkan dari jatuh tempo yang paling dekat
 - Menampilkan berapa hari lagi jatuh tempo (merah kalau urgent < 3 hari)
@@ -201,6 +214,9 @@ Pengguna tap kartu hutang, ATAU tekan ikon ℹ️
 - Tombol **"Kirim Notifikasi Tes"** untuk cek apakah notifikasi berfungsi
 - Info aplikasi: versi, penyimpanan (Hive/Lokal), privasi (100% Offline)
 - Status terakhir NotificationService (untuk debugging)
+
+### 📝 Form & Detail
+![Form Tambah](assets/screenshots/05_form_tambah.jpeg) ![Detail Hutang](assets/screenshots/06_detail_hutang.jpeg)
 
 ---
 
