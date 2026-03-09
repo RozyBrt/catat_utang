@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.rozy.catatutang"
+    namespace = "com.rozy.lunasin"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.rozy.catatutang"
+        applicationId = "com.rozy.lunasin"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
