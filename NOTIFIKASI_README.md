@@ -1,4 +1,4 @@
-# Fitur Notifikasi - Catat Utang
+# Fitur Notifikasi - Lunasin
 
 ## Apa yang Sudah Ditambahkan?
 
@@ -64,7 +64,7 @@ Jika Anda tidak sengaja menolak izin:
 
 1. Buka **Pengaturan HP**
 2. Cari **Aplikasi** atau **Apps**
-3. Cari **Catat Utang**
+3. Cari **Lunasin**
 4. Tap **Izin** atau **Permissions**
 5. Aktifkan:
    - ✅ Notifikasi
@@ -133,7 +133,7 @@ Beberapa HP (terutama Xiaomi, Oppo, Vivo) memiliki pengaturan ketat:
 
 ## Versi Aplikasi
 
-Versi saat ini: **1.2.0**
+Versi saat ini: **1.2.2**
 
 ---
 

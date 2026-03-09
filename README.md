@@ -1,4 +1,4 @@
-# Catat Utang 📝
+# Lunasin 📝
 
 Aplikasi pencatat hutang pribadi yang modern, aman, dan pintar. Dibuat dengan Flutter untuk membantu Anda mengelola piutang dan hutang dengan pengingat otomatis agar tetap amanah.
 
@@ -27,7 +27,7 @@ Aplikasi pencatat hutang pribadi yang modern, aman, dan pintar. Dibuat dengan Fl
 
 ## 🛠️ Cara Menjalankan Project
 
-1. **Clone repository ini**
+1. **Clone repository ini** (https://github.com/RozyBrt/lunasin.git)
 2. **Setup Dependencies**:
    ```powershell
    flutter pub get

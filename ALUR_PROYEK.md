@@ -1,4 +1,4 @@
-# 📓 Alur Proyek: Catat Utang
+# 📓 Alur Proyek: Lunasin
 
 Aplikasi Flutter untuk **mencatat hutang** secara lokal. Semua data disimpan di perangkat (offline), tidak perlu internet, dan dilengkapi **notifikasi otomatis** pengingat jatuh tempo.
 
@@ -213,7 +213,7 @@ Pengguna tap kartu hutang, ATAU tekan ikon ℹ️
 
 ### ⚙️ Pengaturan (`ProfileSection`)
 - Tombol **"Kirim Notifikasi Tes"** untuk cek apakah notifikasi berfungsi
-- Info aplikasi: versi `1.2.0`, penyimpanan (Lokal/Hive), privasi (100% Offline)
+- Info aplikasi: versi `1.2.2`, penyimpanan (Lokal/Hive), privasi (100% Offline)
 - Status terakhir `NotificationService.lastLog` (untuk debugging)
 
 ### 📝 Form & Detail
